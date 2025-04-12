@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <style>
+      form {
+        margin: 50px;
+      }
+      .error {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const firstName = document.querySelector("[name='first_name']");
+        const lastName = document.querySelector("[name='last_name']");
+        const mobile = document.querySelector("[name='mobile']");
+        const password = document.querySelector("[name='password']");
+        const errorMessage = {};
+
+        // Helper to show error messages
+        function showError(input, message) {
+          let errorElement = input.nextElementSibling;
+          if (!errorElement || !errorElement.classList.contains("error")) {
+            errorElement = document.createElement("div");
+            errorElement.classList.add("error");
+            input.after(errorElement);
+          }
+          errorElement.textContent = message;
+        }
+
+        // Helper to clear error messages
+        function clearError(input) {
+          const errorElement = input.nextElementSibling;
+          if (errorElement && errorElement.classList.contains("error")) {
+            errorElement.remove();
+          }
+        }
+
+        // Validation functions
+        function validateAlphabet(input) {
+          const regex = /^[A-Za-z]+$/;
+          if (!regex.test(input.value)) {
+            showError(input, "Only alphabets are allowed.");
+            return false;
+          }
+          clearError(input);
+          return true;
+        }
+
+        function validateNumeric(input) {
+          const regex = /^[0-9]+$/;
+          if (!regex.test(input.value)) {
+            showError(input, "Only numbers are allowed.");
+            return false;
+          }
+          clearError(input);
+          return true;
+        }
+
+        function validateAlphanumeric(input) {
+          const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/;
+          if (!regex.test(input.value)) {
+            showError(
+              input,
+              "Password must contain at least one letter and one number."
+            );
+            return false;
+          }
+          clearError(input);
+          return true;
+        }
+
+        // Event Listeners
+        firstName.addEventListener("input", () => validateAlphabet(firstName));
+        lastName.addEventListener("input", () => validateAlphabet(lastName));
+        mobile.addEventListener("input", () => validateNumeric(mobile));
+        password.addEventListener("input", () => validateAlphanumeric(password));
+
+        // Prevent form submission if validation fails
+        form.addEventListener("submit", function (event) {
+          const isFirstNameValid = validateAlphabet(firstName);
+          const isLastNameValid = validateAlphabet(lastName);
+          const isMobileValid = validateNumeric(mobile);
+          const isPasswordValid = validateAlphanumeric(password);
+
+          if (!isFirstNameValid || !isLastNameValid || !isMobileValid || !isPasswordValid) {
+            event.preventDefault();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    {% include "exam/navbar.html" %}
+    <br><br><br>
+    <div class="container">
+      <h3 style="text-align: center;">Student Signup Form</h3>
+      <form method="POST" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="first_name">First Name</label>
+            {% render_field userForm.first_name|attr:'required:true'  class="form-control" placeholder="First Name" %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="last_name">Last Name</label>
+            {% render_field userForm.last_name|attr:'required:true'  class="form-control" placeholder="Last Name" %}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="mobile">Contact</label>
+            {% render_field studentForm.mobile|attr:'required:true'  class="form-control" placeholder="Contact Number" %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="address">Address</label>
+            {% render_field studentForm.address|attr:'required:true'  class="form-control" placeholder="Address" %}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="username">Username</label>
+            {% render_field userForm.username|attr:'required:true'  class="form-control" placeholder="username" %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            {% render_field userForm.password|attr:'required:true'  class="form-control" placeholder="password" %}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="profile_pic">Profile Picture</label>
+            {% render_field studentForm.profile_pic|attr:'required:true' class="form-control" placeholder="" %}
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success" style="border-radius: 0%;">Sign Up</button>
+      </form>
+    </div>
+    <br><br>
+    {% include "exam/footer.html" %}
+  </body>
+</html>

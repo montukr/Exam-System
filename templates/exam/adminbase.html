@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    a:link {
+      text-decoration: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Gill Sans", sans-serif;
+      overflow: hidden;
+    }
+
+    .header-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #22242A;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-navbar h3 {
+      color: #fff;
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .header-navbar .navbar {
+      display: flex;
+      gap: 15px;
+    }
+
+    .header-navbar .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 20px;
+      padding: 8px 15px;
+      transition: 0.3s;
+    }
+
+    .header-navbar .navbar a:hover {
+      background: #969696;
+      border-radius: 5px;
+    }
+
+    .header-navbar .logout_btn {
+      padding: 8px 15px;
+      background: #ef5350;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .header-navbar .logout_btn:hover {
+      background: #ca4745;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      margin: 4px 0;
+    }
+
+    .content {
+      margin-top: 60px;
+      padding: 20px;
+      background: url(background.png) no-repeat;
+      background-position: center;
+      background-size: cover;
+      min-height: 100vh;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-navbar {
+        flex-wrap: wrap;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #22242A;
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      .navbar a {
+        padding: 10px 0;
+      }
+
+      .navbar.active {
+        display: flex;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+
+<body>
+  <!--header and navbar combined start-->
+  <div class="header-navbar">
+    <h3>Exam System</h3>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="navbar">
+      <a href="/admin-dashboard">Dashboard</a>
+      <a href="/admin-teacher">Teacher Section</a>
+      <a href="/admin-student">Student Section</a>
+      <a href="/admin-course">Manage Courses</a>
+      <a href="/admin-question">Manage Questions</a>
+    </div>
+    <a href="/logout" class="logout_btn">Logout</a>
+  </div>
+  <!--header and navbar combined end-->
+
+  <!--content start-->
+  <div class="content">
+    {% block content %}
+    {% endblock content %}
+    {% include "exam/footer.html" %}
+  </div>
+  <!--content end-->
+
+  <script>
+    function toggleMenu() {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('active');
+    }
+  </script>
+</body>
+
+</html>

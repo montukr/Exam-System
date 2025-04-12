@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Login Panel</title>
+    <style media="screen">
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: #d7d2cc;
+        background: -webkit-linear-gradient(to right, #d7d2cc, #304352);
+        background: linear-gradient(to right, #d7d2cc, #304352);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-panel {
+        width: 450px;
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .login-panel .icon {
+        width: 80px;
+        height: 80px;
+        background: #6c757d;
+        border-radius: 50%;
+        margin: 0 auto 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 40px;
+      }
+
+      .login-panel h1 {
+        margin-bottom: 30px;
+        font-size: 22px;
+        color: #333333;
+      }
+
+      .login-panel input[type="text"],
+      .login-panel input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        font-size: 16px;
+      }
+
+      .login-panel input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background: #4caf50;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .login-panel input[type="submit"]:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    {% include "exam/navbar.html" %}
+    <div class="login-panel">
+      <div class="icon">
+        <img src="/static/image/admin1.png" alt="" width="100px" height="100px"> 
+      </div>
+      <h1><strong>Admin Login Panel</strong></h1>
+      <form method="post">
+        {% csrf_token %}
+        {% render_field form.username class="form-control" autocomplete="off" placeholder="Username" %}
+        {% render_field form.password class="form-control" autocomplete="off" placeholder="Password" %}
+        <input type="submit" value="Login">
+      </form>
+    </div>
+    {% include "exam/footer.html" %}
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <style type="text/css">
+    .bs-example {
+      margin: 0;
+    }
+
+    .navbar {
+      background-color: #212529;
+    }
+
+    .navbar-brand {
+      font-size: 24px;
+      font-family: 'Verdana', sans-serif;
+      font-weight: bold;
+    }
+
+    .navbar-nav {
+      margin-left: auto; /* Push the items to the right */
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 18px;
+      color: #ffffff !important;
+      padding: 10px 20px;
+      margin: 0 5px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      background-color: #343a40;
+      color: #ffffff !important;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+    }
+
+    .navbar-toggler {
+      border-color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <a class="navbar-brand" href="/">Exam System</a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+          <a href="/" class="nav-item nav-link">Home</a>
+          <a href="/student/studentlogin" class="nav-item nav-link">Student</a>
+          <a href="/teacher/teacherlogin" class="nav-item nav-link">Teacher</a>
+          <a href="/adminclick" class="nav-item nav-link">Admin</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</body>
+
+</html>

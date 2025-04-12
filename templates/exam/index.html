@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<style>
+  /* Ensure the body and html take up the full height */
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  /* Set the jumbotron to take up the full height of the page */
+  .jumbotron {
+    margin-bottom: 0px;
+    height: 100%; /* Full height */
+  }
+
+  /* Use flexbox to center the content vertically and horizontally */
+  #section-jumbotron {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh; /* 100% of the viewport height */
+    background-color: #e9ecef; /* Optional: Set a background color */
+  }
+
+  .container {
+    text-align: center;
+  }
+</style>
+
+<body>
+  {% include "exam/navbar.html" %}
+  <br>
+
+  <section id="section-jumbotron" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h2 class="display-3 text-success"><strong>Examination System</strong></h2>
+      <br>
+      <p class="display-4 d-none d-sm-block " style="font-size: 40px;">Attend your examinations online!</p>
+      <br>
+      <a href="/student/studentlogin" class="btn btn-lg btn-success"><h1>Login as Student</h1></a>
+    
+      <br><br><br>
+    </div>  
+  </section>
+
+  {% include "exam/footer.html" %}
+</body>
+
+</html>
