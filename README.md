@@ -91,7 +91,4 @@ The project depends on the following Python packages:
 - Pillow
 
 These packages are listed in the `requirements.txt` file for easy installation.
-
 ---
-
-**Happy Coding!**
