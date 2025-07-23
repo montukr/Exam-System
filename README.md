@@ -1,6 +1,9 @@
 # Exam System
 
 ## Overview
+
+Developed an Online Exam System during BCA using Django, Bootstrap, and SQLite. Features include admin user management, exam creation by examiners, and timed student exams with automatic submission and easy navigation.
+
 This project is developed using Django, a high-level Python web framework, along with additional dependencies to enhance its functionality. Follow the steps below to set up the environment and run the application on your local machine.
 
 ## Prerequisites
